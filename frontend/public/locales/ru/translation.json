@@ -1,0 +1,108 @@
+{
+  "mainPage": {
+    "onConnect": "связь с сервером установлена",
+    "onDisconnect": "связь с сервером потеряна",
+    "fetchDataError": "возникла ошибка при загрузке данных"
+  },
+  "channel": {
+    "manage": "Управление каналом",
+    "remove": "Удалить",
+    "rename": "Переименовать"
+  },
+  "channels": {
+    "channels": "Каналы",
+    "+": "+"
+  },
+  "navbar": {
+    "signOut": "Выйти",
+    "name": "Hexlet Chat"
+  },
+  "loginPage": {
+    "validation": {
+      "required": "обязательное поле"
+    },
+    "username": "Ваш ник",
+    "password": "Пароль",
+    "login": "Войти",
+    "wrongCredentials": "Неверные имя пользователя или пароль",
+    "noAccountQuestion": "Нет аккаунта? ",
+    "signup": "Регистрация",
+    "networkError": "Ошибка соединения"
+  },
+  "messages": {
+    "messages_zero": "нет сообщений",
+    "messages_one": "{{count}} сообщение",
+    "messages_few": "{{count}} сообщения",
+    "messages_many": "{{count}} сообщений"
+  },
+  "messageForm": {
+    "sendError": "Cообщение не отправлено",
+    "ariaLabel": "Новое сообщение",
+    "placeholder": "Введите сообщение...",
+    "send": "Отправить"
+  },
+  "notFoundPage": {
+    "header": "404",
+    "message": "Страница не найдена",
+    "letdown": "Обидно!",
+    "advise": "Но вы можете перейти на главную страницу",
+    "action": "Перейти"
+  },
+  "signupPage": {
+    "validation": {
+      "notUniqueUser": "Такой пользователь уже существует",
+      "required": "Обязательное поле",
+      "min3": "От 3 до 20 символов",
+      "max20": "От 3 до 20 символов",
+      "min6": "Не менее 6 символов",
+      "mustMatch": "Пароли должны совпадать"
+    },
+    "image": "Новый пользователь",
+    "signupCaption": "Регистрация",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "passwordConfirmation": "Подтвердите пароль",
+    "signupButton": "Зарегистрироваться",
+    "networkError": "Ошибка соединения"
+  },
+  "modals": {
+    "add": {
+      "validation": {
+        "required": "Укажите имя канала",
+        "notUniqueName": "Данное имя канала уже занято",
+        "min3": "От 3 до 20 символов",
+        "max20": "От 3 до 20 символов"
+      },
+      "title": "Новый канал",
+      "name": "Имя канала",
+      "cancel": "Отменить",
+      "add": "Создать",
+      "addChannelError": "не удалось создать канал",
+      "addChannelSuccess": "Канал создан"
+    },
+    "remove": {
+      "title": "Удалить канал",
+      "subtitle": "Уверены?",
+      "name": "Имя канала",
+      "cancel": "Отменить",
+      "remove": "Удалить",
+      "removeChannelError": "Не удалось удалить канал",
+      "removeChannelSuccess": "Канал удалён"
+    },
+    "rename": {
+      "validation": {
+        "required": "Укажите имя канала",
+        "notUniqueName": "Данное имя канала уже занято",
+        "min3": "От 3 до 20 символов",
+        "max20": "От 3 до 20 символов"
+      },
+      "title": "Переименовать канал",
+      "name": "Имя канала",
+      "cancel": "Отменить",
+      "rename": "Переименовать",
+      "send": "Отправить",
+      "renameChannelError": "Не удалось переименовать канал",
+      "renameChannelSuccess": "Канал переименован"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import "bootstrap/scss/bootstrap.scss";
+@import 'react-toastify/dist/ReactToastify.css';
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #34c176 #6c757d;
+}
+
+*::-webkit-scrollbar {
+  width: 10px; /* в основном для вертикальных полос прокрутки */
+  height: 10px; /* в основном для горизонтальных полос прокрутки */
+}
+
+*::-webkit-scrollbar-thumb { /* плашка-бегунок */
+  background: #6c757d;
+  border-radius: 6px;
+}
+
+*::-webkit-scrollbar-track { /* фон */
+  background: #fff;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "npx start-server -s ./frontend/dist",
+    "start:front": "npm run start --prefix frontend",
+    "start": "concurrently \"npm run start:server\" \"npm run start:front\"",
+    "build:prod": "npx webpack build --env mode=production",
+    "build:dev": "npx webpack build --env mode=development",
+    "kill": "taskkill /f /im node.exe"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hexlet/chat-server": "^1.1.8",
+    "concurrently": "^8.2.2"
+  }
+}
