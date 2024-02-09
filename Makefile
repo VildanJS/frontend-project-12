@@ -1,5 +1,5 @@
 install:
-	npm ci
+	(npm ci) && (cd frontend && npm ci)
 
 build:
 	npm run build:prod
