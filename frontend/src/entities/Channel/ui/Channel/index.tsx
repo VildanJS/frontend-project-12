@@ -22,8 +22,9 @@ export const Channel = (props: ChannelComponentProps) => {
 
 
     return (
-        <Button onClick={() => dispatch(setCurrentChannelId({ id }))} className={channelClassName}>
-            <span className='me-1'>#</span>{props.name}
+        <Button type="button" onClick={() => dispatch(setCurrentChannelId({ id }))} className={channelClassName}>
+            <span className='me-1'>#</span>
+            {props.name}
         </Button>
     )
 
