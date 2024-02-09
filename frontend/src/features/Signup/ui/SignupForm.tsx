@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Formik } from 'formik'
+import { ErrorMessage, Formik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
@@ -96,9 +96,8 @@ export const SignupForm = () => {
                                                     <div className='d-flex flex-row align-items-center mb-4'>
                                                         <i className='fas fa-user fa-lg me-3 fa-fw'></i>
                                                         <div className='form-outline flex-fill mb-0'>
-                                                            <Field
+                                                            <input
                                                                 placeholder={t('signupPage.username')}
-                                                                label={t('signupPage.username')}
                                                                 type='text'
                                                                 name='username'
                                                                 id='usernameId'
@@ -108,6 +107,11 @@ export const SignupForm = () => {
                                                                 className='form-control'
                                                             />
                                                             <ErrorMessage name='username' component='label' />
+                                                            <label
+                                                                className='visually-hidden'
+                                                                htmlFor='usernameId'
+                                                            >{t('signupPage.username')}
+                                                            </label>
                                                         </div>
                                                     </div>
 
@@ -115,9 +119,8 @@ export const SignupForm = () => {
                                                     <div className='d-flex flex-row align-items-center mb-4'>
                                                         <i className='fas fa-lock fa-lg me-3 fa-fw'></i>
                                                         <div className='form-outline flex-fill mb-0'>
-                                                            <Field
+                                                            <input
                                                                 placeholder={t('signupPage.password')}
-                                                                label={t('signupPage.password')}
                                                                 type='password'
                                                                 name='password'
                                                                 id='passwordId'
@@ -127,15 +130,19 @@ export const SignupForm = () => {
                                                                 className='form-control'
                                                             />
                                                             <ErrorMessage name='password' component='label' />
+                                                            <label
+                                                                className='visually-hidden'
+                                                                htmlFor='passwordId'
+                                                            >{t('signupPage.password')}
+                                                            </label>
                                                         </div>
                                                     </div>
 
                                                     <div className='d-flex flex-row align-items-center mb-4'>
                                                         <i className='fas fa-key fa-lg me-3 fa-fw'></i>
                                                         <div className='form-outline flex-fill mb-0'>
-                                                            <Field
+                                                            <input
                                                                 placeholder={t('signupPage.passwordConfirmation')}
-                                                                label={t('signupPage.passwordConfirmation')}
                                                                 type='password'
                                                                 name='passwordConfirmation'
                                                                 id='passwordConfirmationId'
@@ -146,8 +153,12 @@ export const SignupForm = () => {
                                                             />
                                                             <ErrorMessage
                                                                 name='passwordConfirmation'
-                                                                component='label'
-                                                            />
+                                                                component='label' />
+                                                            <label
+                                                                className='visually-hidden'
+                                                                htmlFor='passwordConfirmationId'
+                                                            >{t('signupPage.passwordConfirmation')}
+                                                            </label>
                                                         </div>
                                                     </div>
 
