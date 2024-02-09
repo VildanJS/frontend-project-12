@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack serve --env port=3000",
-    "build:prod": "webpack build --env mode=production",
-    "build:dev": "webpack build --env mode=development",
+    "start": "npx webpack serve --env port=3000",
+    "build:prod": "npx webpack build --env mode=production",
+    "build:dev": "npx webpack build --env mode=development",
     "kill": "taskkill /f /im node.exe"
   },
   "author": "",
