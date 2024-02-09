@@ -6,8 +6,8 @@
     "start:server": "npx start-server -s ./frontend/dist",
     "start:front": "npm run start --prefix frontend",
     "start": "concurrently \"npm run start:server\" \"npm run start:front\"",
-    "build:prod": "npx webpack build --env mode=production",
-    "build:dev": "npx webpack build --env mode=development",
+    "build:prod": "npm run build:prod --prefix frontend",
+    "build:dev": "npm run build:dev",
     "kill": "taskkill /f /im node.exe"
   },
   "author": "",
