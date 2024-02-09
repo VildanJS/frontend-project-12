@@ -11,6 +11,7 @@ import { useAppDispatch } from '@/shared/hooks'
 
 import { isApiResponse } from '@/shared/utils/isApiError'
 import { Alert } from '@/shared/ui/Alert'
+import React from 'react'
 
 
 const makeSignupSchema = (t: TFunction<'translation', undefined>) => {
@@ -106,6 +107,11 @@ export const SignupForm = () => {
                                                                 className='form-control'
                                                             />
                                                             <ErrorMessage name='username' component='label' />
+                                                            <label
+                                                                className='visually-hidden'
+                                                                htmlFor='username'
+                                                            >{t('signupPage.username')}
+                                                            </label>
                                                         </div>
                                                     </div>
 
@@ -124,6 +130,11 @@ export const SignupForm = () => {
                                                                 className='form-control'
                                                             />
                                                             <ErrorMessage name='password' component='label' />
+                                                            <label
+                                                                className='visually-hidden'
+                                                                htmlFor='password'
+                                                            >{t('signupPage.password')}
+                                                            </label>
                                                         </div>
                                                     </div>
 
@@ -140,8 +151,14 @@ export const SignupForm = () => {
                                                                 value={values.passwordConfirmation}
                                                                 className='form-control'
                                                             />
-                                                            <ErrorMessage name='passwordConfirmation'
-                                                                          component='label' />
+                                                            <ErrorMessage
+                                                                name='passwordConfirmation'
+                                                                component='label' />
+                                                            <label
+                                                                className='visually-hidden'
+                                                                htmlFor='passwordConfirmation'
+                                                            >{t('signupPage.passwordConfirmation')}
+                                                            </label>
                                                         </div>
                                                     </div>
 
