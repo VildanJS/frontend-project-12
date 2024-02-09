@@ -1,8 +1,8 @@
 install:
 	npm ci
+
 build:
-    npm run build:prod
+	npm run build:prod
+
 start:
-    npm run start:server
-
-
+	npm run start:server
