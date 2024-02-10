@@ -8,6 +8,8 @@ import { setCredentials } from '@/features/Auth/model/sliceAuth'
 import { useLoginUserMutation } from '../api/auth'
 import { useTranslation } from 'react-i18next'
 import { TFunction } from 'i18next'
+import { isApiResponse } from '@/shared/utils/isApiError'
+import { toast } from 'react-toastify'
 
 interface LoginFormProps extends PropsWithChildren {
     className?: string
@@ -17,7 +19,7 @@ const makeLoginSchema = (t: TFunction<'translation', undefined>) => Yup.object({
     username: Yup.string()
         .required(t('loginPage.validation.required')),
     password: Yup.string()
-        .required(t('loginPage.validation.required')),
+        .required(t('loginPage.validation.required'))
 })
 
 type LoginSchemaType = Yup.ObjectSchema<{ username: string; password: string; }, Yup.AnyObject, { username: undefined; password: undefined; }>
@@ -31,22 +33,31 @@ export const LoginForm: FC<LoginFormProps> = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [loginUser, { error }] =
-        useLoginUserMutation()
+    const [loginUser] = useLoginUserMutation()
 
     const schema = makeLoginSchema(t)
 
     return (
         <div className='position-absolute top-50 start-50 translate-middle'>
             <Formik
-                initialValues={{ username: '', password: '' }}
+                initialValues={{ username: '', password: '', error: '' }}
                 validationSchema={schema}
-                onSubmit={async (values, { setSubmitting }) => {
-                    const response = await loginUser(values)
-                    if ('data' in response) {
+                onSubmit={async (values, { setSubmitting, setFieldValue }) => {
+                    try {
+                        const data = await loginUser(values).unwrap()
                         setSubmitting(false)
-                        dispatch(setCredentials(response.data))
+                        dispatch(setCredentials(data))
                         navigate('/')
+                    } catch (error) {
+                        if (isApiResponse(error)) {
+                            if (error.status === 401) {
+                                await setFieldValue('error', t('loginPage.wrongCredentials'))
+                            } else {
+                                toast.error(t('signupPage.networkError', { code: error.status }))
+                            }
+                        } else {
+                            console.error(error)
+                        }
                     }
                 }}
             >{
@@ -96,7 +107,7 @@ export const LoginForm: FC<LoginFormProps> = () => {
                                 </label>
                             </div>
 
-                            <Alert error={error} />
+                            <Alert error={values.error} />
 
 
                             <button
