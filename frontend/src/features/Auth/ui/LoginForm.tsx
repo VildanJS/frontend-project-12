@@ -43,8 +43,8 @@ export const LoginForm: FC<LoginFormProps> = () => {
                 initialValues={{ username: '', password: '', error: '' }}
                 validationSchema={schema}
                 onSubmit={async (values, { setSubmitting, setFieldValue }) => {
+                    console.log("=>(LoginForm.tsx:47) values.error!!!!!!!", values.error);
                     try {
-                        await setFieldValue('error', '')
                         const data = await loginUser(values).unwrap()
                         dispatch(setCredentials(data))
                         setSubmitting(false)
