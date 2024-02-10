@@ -1,7 +1,6 @@
 import React, { FC, PropsWithChildren, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import { Button } from '@/shared/ui/Button'
-import { useTranslation } from 'react-i18next'
 
 interface DropdownProps extends PropsWithChildren {
     name: string,
@@ -10,7 +9,6 @@ interface DropdownProps extends PropsWithChildren {
 
 export const Dropdown: FC<DropdownProps> = (props) => {
     const [isOpenDropdown, setIsOpenDropdownStatus] = useState(false)
-    const {t} = useTranslation();
 
     const container = useRef<HTMLDivElement>(null)
     const buttonRef = useRef<HTMLButtonElement>(null)
@@ -38,7 +36,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
         <>
             <Button ref={buttonRef} onClick={switchDropdownStatus} type='button' id='react-aria7293575444-1' aria-expanded='true'
                     className={buttonClassname}>
-                <span className='visually-hidden'>{t('channels.+')}</span>
+                <span className='visually-hidden'>{props.name}</span>
             </Button>
             <div
                 ref={container}

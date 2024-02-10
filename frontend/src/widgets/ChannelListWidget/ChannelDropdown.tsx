@@ -5,9 +5,11 @@ import { RenameChannel } from '@/features/channel/RenameChannel'
 import { ChannelType, getCurrentChannelId } from '@/entities/Channel'
 import { useSelector } from 'react-redux'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 
 export const ChannelDropdown: FC<ChannelType> = (props) => {
+    const { t } = useTranslation()
     const { id } = props
     const currenChannelId = useSelector(getCurrentChannelId)
 
@@ -17,7 +19,7 @@ export const ChannelDropdown: FC<ChannelType> = (props) => {
 
 
     return (
-        <Dropdown btnClassName={dropdownClassname} name='Управление каналом'>
+        <Dropdown btnClassName={dropdownClassname} name={t('channel.manage')}>
             <RemoveChannel {...props} />
             <RenameChannel {...props} />
         </Dropdown>

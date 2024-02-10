@@ -22,7 +22,7 @@ export const RemoveChannel: FC<RenameChannelProps> = (props) => {
                 className='dropdown-item'
                 role='button'
             >
-                {t('modals.remove.remove')}
+                {t('channel.remove')}
             </AppLink>
 
             {isOpen &&
