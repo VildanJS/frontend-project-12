@@ -14,10 +14,8 @@ import {
 export const MainPage = () => {
 
     const {data} = useGetChannelsAndMessagesQuery()
-    console.log("=>(MainPage.tsx:24) data", data);
 
     const { t } = useTranslation()
-
 
     return (
         <div className='container h-100 my-4 overflow-hidden rounded shadow'>
