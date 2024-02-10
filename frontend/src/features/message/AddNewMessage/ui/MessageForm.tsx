@@ -11,7 +11,7 @@ interface IAddNewMessage extends PropsWithChildren {
 }
 
 export const MessageForm: FC<IAddNewMessage> = () => {
-    const filter = getLeoProfanityFilter('ru')
+    const filter = getLeoProfanityFilter('en')
     const [sendMessage] = useSendMessageMutation()
     const { t } = useTranslation()
 
@@ -30,7 +30,7 @@ export const MessageForm: FC<IAddNewMessage> = () => {
                 <Form className='py-1 border rounded-2'>
                     <div className='input-group has-validation'>
                         <Field
-                            id='message'
+                            id='messageId'
                             name='message'
                             aria-label={t('messageForm.ariaLabel')}
                             placeholder={t('messageForm.placeholder')}
@@ -38,6 +38,9 @@ export const MessageForm: FC<IAddNewMessage> = () => {
                             className='border-0 p-0 ps-2 form-control'
                         />
                         <ErrorMessage name='message' />
+                        <label className='visually-hidden' htmlFor='messageId'>
+                            {t('messageForm.ariaLabel')}
+                        </label>
                         <Button
                             disabled={!props.values.message.length}
                             onKeyDown={(e) => {
