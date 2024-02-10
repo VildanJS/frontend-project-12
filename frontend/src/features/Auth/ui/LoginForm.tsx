@@ -44,9 +44,10 @@ export const LoginForm: FC<LoginFormProps> = () => {
                 validationSchema={schema}
                 onSubmit={async (values, { setSubmitting, setFieldValue }) => {
                     try {
+                        await setFieldValue('error', '')
                         const data = await loginUser(values).unwrap()
-                        setSubmitting(false)
                         dispatch(setCredentials(data))
+                        setSubmitting(false)
                         navigate('/')
                     } catch (error) {
                         if (isApiResponse(error)) {
