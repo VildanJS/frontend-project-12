@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { ErrorMessage, Formik } from 'formik'
 import * as Yup from 'yup'
@@ -71,6 +71,11 @@ export const LoginForm: FC<LoginFormProps> = () => {
                                     className='form-control'
                                 />
                                 <ErrorMessage name='username' component='label' />
+                                <label
+                                    className='visually-hidden'
+                                    htmlFor='usernameId'
+                                >{t('loginPage.username')}
+                                </label>
                             </div>
 
                             <div className='form-outline mb-4'>
@@ -84,6 +89,11 @@ export const LoginForm: FC<LoginFormProps> = () => {
                                     className='form-control'
                                 />
                                 <ErrorMessage name='password' component='label' />
+                                <label
+                                    className='visually-hidden'
+                                    htmlFor='passwordId'
+                                >{t('loginPage.password')}
+                                </label>
                             </div>
 
                             <Alert error={error} />
