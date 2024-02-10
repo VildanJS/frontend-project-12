@@ -31,7 +31,7 @@ const validationSchema = (t: TFunction<'translation', undefined>, channelsNames:
 
 export const NewChannelModal: FC<NewChannelModalProps> = (props) => {
     const { onClose, isOpen } = props
-    const filter = getLeoProfanityFilter('ru')
+    const filter = getLeoProfanityFilter('en')
     const [createNewChannel] = useAddNewChannelMutation()
 
     const { t } = useTranslation()
