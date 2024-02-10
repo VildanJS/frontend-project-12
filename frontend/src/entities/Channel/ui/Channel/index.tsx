@@ -4,8 +4,6 @@ import { ChannelType, getCurrentChannelId, setCurrentChannelId } from '@/entitie
 import classNames from 'classnames'
 import { useAppDispatch } from '@/shared/hooks'
 import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
-
 
 interface ChannelComponentProps extends PropsWithChildren<ChannelType> {
 }
@@ -14,7 +12,7 @@ export const Channel = (props: ChannelComponentProps) => {
     const { id } = props
     const currenChannelId = useSelector(getCurrentChannelId)
 
-    const channelClassName = classNames(['w-100', 'rounded-0', 'text-start', 'btn'], {
+    const channelClassName = classNames(['w-100', 'rounded-0', 'text-start', 'text-truncate', 'btn'], {
         ['btn-secondary']: currenChannelId === id,
     })
 
