@@ -1,34 +1,22 @@
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { ChannelList } from '@/widgets/ChannelListWidget'
+import { ChannelInfo } from '@/widgets/ChannelInfo'
+import { AddNewChannel } from '@/features/channel/AddNewChannel/'
+import { MessageForm, MessageList } from '@/entities/Message'
+
 import {
-    rtkApi,
+    useGetChannelsAndMessagesQuery,
 } from '@/shared/api/rtkApi'
 
 
-import { ChannelList } from '@/widgets/ChannelListWidget'
-import { MessageForm, MessageList } from '@/entities/Message'
-
-
-import { useTranslation } from 'react-i18next'
-
-import { useSelector } from 'react-redux'
-import { getMessagesByChannelId } from '@/entities/Message/'
-import { channelsSelector, getCurrentChannelId } from '@/entities/Channel/'
-import { AddNewChannel } from '@/features/channel/AddNewChannel/ui/AddNewChannel'
-import React from 'react'
-import { ChannelInfo } from '@/widgets/ChannelInfo'
-import { useAppDispatch } from '@/shared/hooks'
-
 export const MainPage = () => {
-    const dispatch = useAppDispatch()
-    dispatch(rtkApi.endpoints.getChannelsAndMessages.initiate())
 
+    const {data} = useGetChannelsAndMessagesQuery()
+    console.log("=>(MainPage.tsx:24) data", data);
 
     const { t } = useTranslation()
-
-
-    const currentChannelId = useSelector(getCurrentChannelId)
-    const messagesByCurrentChannelId = useSelector(getMessagesByChannelId(currentChannelId))
-
-    const channels = useSelector(channelsSelector.selectAll)
 
 
     return (
@@ -39,12 +27,12 @@ export const MainPage = () => {
                         <b>{t("channels.channels")}</b>
                         <AddNewChannel />
                     </div>
-                    <ChannelList channels={channels} />
+                    <ChannelList channels={data?.channels} />
                 </div>
                 <div className='col p-0 h-100'>
                     <div className='d-flex flex-column h-100'>
                         <ChannelInfo />
-                        <MessageList messages={messagesByCurrentChannelId} />
+                        <MessageList messages={data?.messages} />
                         <MessageForm />
                     </div>
                 </div>

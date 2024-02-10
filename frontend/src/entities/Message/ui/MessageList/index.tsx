@@ -1,12 +1,19 @@
 import { PropsWithChildren, useEffect, useRef } from 'react'
 import { MessageType } from '../../model/messagesSlice'
 import { MessageText } from '../MessageText/MessageText'
+import { useSelector } from 'react-redux'
+import { getCurrentChannelId } from '@/entities/Channel'
 
 interface MessageListProps extends PropsWithChildren {
-    messages: MessageType[]
+    messages?: MessageType[]
 }
 
-export const MessageList = (props: MessageListProps) => {
+export const MessageList = ({messages = []}: MessageListProps) => {
+
+    const currentChannelId = useSelector(getCurrentChannelId)
+
+    const messagesByCurrentChannel = messages.filter((message) => message.channelId === currentChannelId)
+
     const ref = useRef<HTMLDivElement>(null)
 
     const scrollToBottom = () => {
@@ -15,11 +22,11 @@ export const MessageList = (props: MessageListProps) => {
 
     useEffect(() => {
         scrollToBottom()
-    }, [props.messages])
+    }, [messagesByCurrentChannel])
 
     return (
         <div id='messages-box' className='chat-messages overflow-auto px-5 '>
-            {props.messages.map(
+            {messagesByCurrentChannel.map(
                 (message) => {
                     return (
                         <MessageText body={message.body} key={message.id} username={message.username} />

@@ -29,7 +29,6 @@ export const messageApi = rtkApi.injectEndpoints({
                     })
                 },
                 invalidatesTags: () => ['Message'],
-
             })
         }),
     },

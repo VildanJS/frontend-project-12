@@ -39,19 +39,31 @@ export const rtkApi = createApi({
                     query: () => '/data',
                     async onCacheEntryAdded(
                         arg,
-                        { cacheDataLoaded }
+                        { cacheDataLoaded, updateCachedData },
                     ) {
                         const socket = getSocket()
-                        socket.on('connect', () => {
-                            console.log('socket connected on rtk query!')
+                        socket.on('connect', () => {})
+
+                        socket.on('newMessage', (data) => {
+                            updateCachedData((draft) => {
+                                draft.messages.push(data)
+                            })
                         })
 
+                        socket.on('newChannel', (data) => {
+                            updateCachedData((draft) => {
+                                draft.channels.push(data)
+                            })
+                        })
+
+
                         await cacheDataLoaded
-                        socket.off('connect');
+                        socket.off('connect')
+
 
                     },
                     providesTags: () => {
-                            return ['Channel', 'Message']
+                        return ['Channel', 'Message']
                     },
                 },
             ),
