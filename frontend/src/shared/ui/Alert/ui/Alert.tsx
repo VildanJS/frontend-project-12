@@ -7,7 +7,7 @@ interface AlertErrorProps {
 export const Alert = (props: AlertErrorProps) => {
     const { error } = props
 
-    if (error) return (
+    return (
         <div className='alert alert-primary' role='alert'>
             {error}
         </div>

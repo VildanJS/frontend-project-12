@@ -19,7 +19,7 @@ const makeLoginSchema = (t: TFunction<'translation', undefined>) => Yup.object({
     username: Yup.string()
         .required(t('loginPage.validation.required')),
     password: Yup.string()
-        .required(t('loginPage.validation.required'))
+        .required(t('loginPage.validation.required')),
 })
 
 type LoginSchemaType = Yup.ObjectSchema<{ username: string; password: string; }, Yup.AnyObject, { username: undefined; password: undefined; }>
@@ -33,17 +33,16 @@ export const LoginForm: FC<LoginFormProps> = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [loginUser] = useLoginUserMutation()
+    const [loginUser, { isError }] = useLoginUserMutation()
 
     const schema = makeLoginSchema(t)
 
     return (
         <div className='position-absolute top-50 start-50 translate-middle'>
             <Formik
-                initialValues={{ username: '', password: '', error: '' }}
+                initialValues={{ username: '', password: '' }}
                 validationSchema={schema}
-                onSubmit={async (values, { setSubmitting, setFieldValue }) => {
-                    console.log("=>(LoginForm.tsx:47) values.error!!!!!!!", values.error);
+                onSubmit={async (values, { setSubmitting }) => {
                     try {
                         const data = await loginUser(values).unwrap()
                         dispatch(setCredentials(data))
@@ -51,11 +50,7 @@ export const LoginForm: FC<LoginFormProps> = () => {
                         navigate('/')
                     } catch (error) {
                         if (isApiResponse(error)) {
-                            if (error.status === 401) {
-                                await setFieldValue('error', t('loginPage.wrongCredentials'))
-                            } else {
-                                toast.error(t('signupPage.networkError', { code: error.status }))
-                            }
+                            toast.error(t('signupPage.networkError', { code: error.status }))
                         } else {
                             console.error(error)
                         }
@@ -108,7 +103,7 @@ export const LoginForm: FC<LoginFormProps> = () => {
                                 </label>
                             </div>
 
-                            <Alert error={values.error} />
+                            {isError && <Alert error={t('loginPage.wrongCredentials')} />}
 
 
                             <button
