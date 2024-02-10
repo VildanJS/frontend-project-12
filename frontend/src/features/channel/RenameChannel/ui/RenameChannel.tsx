@@ -23,7 +23,7 @@ export const RenameChannel = (props: RenameChannelProps) => {
                 className='dropdown-item'
                 role='button'
             >
-                {t('channel.remove')}
+                {t('channel.rename')}
             </AppLink>
 
             {isOpen &&

@@ -71,14 +71,14 @@ export const RenameChannelModal: FC<RenameChannelModalProps> = (props) => {
                         <div>
                             <Field
                                 autoFocus={true}
-                                id='name'
+                                id='nameId'
                                 name='name'
                                 type='text'
                                 className='mb-2 form-control'
                             />
                             <label
                                 className='visually-hidden'
-                                htmlFor='name'
+                                htmlFor='nameId'
                             >{t('modals.rename.name')}
                             </label>
                             <ErrorMessage name='name' component='label' />
