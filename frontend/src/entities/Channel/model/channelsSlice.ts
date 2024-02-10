@@ -1,9 +1,9 @@
-import { createEntityAdapter, createSelector, createSlice, EntityState, PayloadAction } from '@reduxjs/toolkit'
-import { StateSchema } from '@/app/provider/store'
+import { createEntityAdapter, createSelector, createSlice, type EntityState, type PayloadAction } from '@reduxjs/toolkit'
+import { type StateSchema } from '@/app/provider/store'
 import { rtkApi } from '@/shared/api/rtkApi'
 import { channelApiRemove } from '@/features/channel/RemoveChannel'
 
-export type ChannelType = {
+export interface ChannelType {
     id: number;
     name: string;
     removable: boolean;

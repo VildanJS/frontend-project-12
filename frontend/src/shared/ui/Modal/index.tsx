@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react'
+import React, { type PropsWithChildren, useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { Button } from '@/shared/ui/Button'
 
@@ -37,7 +37,7 @@ export const Modal = (props: ModalProps) => {
 
     useEffect(() => {
         if (isOpen) window.addEventListener('keydown', onKeyDown)
-        return () => window.removeEventListener('keydown', onKeyDown)
+        return () => { window.removeEventListener('keydown', onKeyDown); }
     }, [isOpen, onKeyDown])
 
 

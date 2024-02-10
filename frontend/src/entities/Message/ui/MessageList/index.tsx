@@ -1,5 +1,5 @@
-import { PropsWithChildren, useEffect, useRef } from 'react'
-import { MessageType } from '../../model/messagesSlice'
+import { type PropsWithChildren, useEffect, useRef } from 'react'
+import { type MessageType } from '../../model/messagesSlice'
 import { MessageText } from '../MessageText/MessageText'
 import { useSelector } from 'react-redux'
 import { getCurrentChannelId } from '@/entities/Channel'

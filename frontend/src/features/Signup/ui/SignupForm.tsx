@@ -2,7 +2,7 @@ import { ErrorMessage, Formik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
-import { TFunction } from 'i18next'
+import { type TFunction } from 'i18next'
 import { useNavigate } from 'react-router-dom'
 import { useSignupUserMutation } from '../api/signup'
 
@@ -38,7 +38,7 @@ export const SignupForm = () => {
 
     const navigate = useNavigate()
 
-    let schema = makeSignupSchema(t)
+    const schema = makeSignupSchema(t)
 
     return (
         <section className='vh-100' style={{ backgroundColor: '#eee' }}>

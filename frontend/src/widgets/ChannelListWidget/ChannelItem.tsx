@@ -1,5 +1,5 @@
- import { FC } from 'react'
-import { Channel, ChannelType } from '@/entities/Channel'
+ import { type FC } from 'react'
+import { Channel, type ChannelType } from '@/entities/Channel'
 import { ChannelDropdown } from './ChannelDropdown'
 
 interface ChannelItemProps extends ChannelType {

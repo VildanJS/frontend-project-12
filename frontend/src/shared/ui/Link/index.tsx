@@ -1,4 +1,4 @@
-import React, { forwardRef, PropsWithChildren } from 'react'
+import React, { forwardRef, type PropsWithChildren } from 'react'
 import classNames from 'classnames'
 
 interface AppLinkProps {

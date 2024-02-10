@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { getMessagesCountByChannelId } from '@/entities/Message/model/messagesSlice'
 import { channelsSelector, getCurrentChannelId } from '@/entities/Channel'
-import { StateSchema } from '@/app/provider/store'
+import { type StateSchema } from '@/app/provider/store'
 import { useTranslation } from 'react-i18next'
 
 export const ChannelInfo = () => {

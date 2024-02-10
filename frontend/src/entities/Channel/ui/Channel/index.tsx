@@ -1,6 +1,6 @@
 import { Button } from '@/shared/ui/Button'
-import { PropsWithChildren } from 'react'
-import { ChannelType, getCurrentChannelId, setCurrentChannelId } from '@/entities/Channel'
+import { type PropsWithChildren } from 'react'
+import { type ChannelType, getCurrentChannelId, setCurrentChannelId } from '@/entities/Channel'
 import classNames from 'classnames'
 import { useAppDispatch } from '@/shared/hooks'
 import { useSelector } from 'react-redux'
@@ -13,7 +13,7 @@ export const Channel = (props: ChannelComponentProps) => {
     const currenChannelId = useSelector(getCurrentChannelId)
 
     const channelClassName = classNames(['w-100', 'rounded-0', 'text-start', 'text-truncate', 'btn'], {
-        ['btn-secondary']: currenChannelId === id,
+        'btn-secondary': currenChannelId === id,
     })
 
     const dispatch = useAppDispatch()

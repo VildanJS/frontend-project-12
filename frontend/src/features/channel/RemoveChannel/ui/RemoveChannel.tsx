@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { useModalState } from '@/shared/ui/Modal'
 import { AppLink } from '@/shared/ui/Link'
 import { Portal } from '@/shared/ui/Portal'
-import { ChannelType } from '@/entities/Channel'
+import { type ChannelType } from '@/entities/Channel'
 import { RemoveChannelModal } from './RemoveChannelModal'
 import { useTranslation } from 'react-i18next'
 

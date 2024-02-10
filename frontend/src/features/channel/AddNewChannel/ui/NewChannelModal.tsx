@@ -1,8 +1,8 @@
 import { Overlay } from '@/shared/ui/Overlay'
 import * as Yup from 'yup'
-import React, { FC } from 'react'
-import { Modal } from '@/shared/ui/Modal'
-import { ModalProps } from '@/shared/ui/Modal'
+import React, { type FC } from 'react'
+import { Modal , type ModalProps } from '@/shared/ui/Modal'
+
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Button } from '@/shared/ui/Button'
 import { useAddNewChannelMutation } from '@/features/channel/AddNewChannel'
@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { getLeoProfanityFilter } from '@/shared/leoProfanity'
 import { toast } from 'react-toastify'
 import { isApiResponse } from '@/shared/utils/isApiError'
-import { TFunction } from 'i18next'
+import { type TFunction } from 'i18next'
 import { useSelector } from 'react-redux'
 import { getChannelNamesList } from '@/entities/Channel/model/channelsSlice'
 
@@ -86,7 +86,7 @@ export const NewChannelModal: FC<NewChannelModalProps> = (props) => {
                             </label>
                             <div className='d-flex justify-content-end'>
                                 <Button
-                                    onClick={() => onClose()}
+                                    onClick={() => { onClose(); }}
                                     type='button'
                                     className='me-2 btn btn-secondary'
                                 >

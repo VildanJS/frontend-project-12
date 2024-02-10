@@ -15,6 +15,6 @@ export interface ConfigOptions {
 }
 
 export interface EnvOptions {
-    mode: Mode,
-    port: number
+    mode?: Mode,
+    port?: number
 }

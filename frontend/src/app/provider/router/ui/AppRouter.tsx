@@ -1,13 +1,14 @@
+import React, { type FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LoginPage } from '@/pages/LoginPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/404'
 import { SignupPage } from '@/pages/SignupPage'
 import { Layout } from '@/shared/layout/Layout'
-import React from 'react'
-import { ProtectedRoute } from 'app/provider/router/ui/ProtectedRoute'
 
-export const AppRouter = () => {
+import { ProtectedRoute } from './ProtectedRoute'
+
+export const AppRouter: FC = () => {
     const routesForPublic = [
         {
             path: '/login',
@@ -29,8 +30,7 @@ export const AppRouter = () => {
         }
 
 
-    const
-        router = createBrowserRouter([
+    const router = createBrowserRouter([
             {
                 element: <Layout />,
                 children: [

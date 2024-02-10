@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useEffect, useRef, useState } from 'react'
+import React, { type FC, type PropsWithChildren, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import { Button } from '@/shared/ui/Button'
 
@@ -26,7 +26,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside)
-        return () => document.removeEventListener('mousedown', handleClickOutside)
+        return () => { document.removeEventListener('mousedown', handleClickOutside); }
     }, [])
 
     const dropdownClassname = classNames(['dropdown-menu'], { show: isOpenDropdown })
@@ -40,7 +40,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
             </Button>
             <div
                 ref={container}
-                onClick={() => setIsOpenDropdownStatus(false)}
+                onClick={() => { setIsOpenDropdownStatus(false); }}
                 className={dropdownClassname}
                 style={{ position: 'absolute', inset: '0px 0px auto auto', transform: 'translate3d(0px, 40px, 0px)' }}
             >

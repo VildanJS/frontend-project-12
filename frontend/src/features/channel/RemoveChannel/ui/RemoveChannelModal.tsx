@@ -1,6 +1,6 @@
 import { Overlay } from '@/shared/ui/Overlay'
-import React, { FC } from 'react'
-import { Modal, ModalProps } from '@/shared/ui/Modal'
+import React, { type FC } from 'react'
+import { Modal, type ModalProps } from '@/shared/ui/Modal'
 import { Form, Formik } from 'formik'
 import { Button } from '@/shared/ui/Button'
 import { useRemoveChannelMutation } from '@/features/channel/RemoveChannel/api'
@@ -48,7 +48,7 @@ export const RemoveChannelModal: FC<RemoveChannelModalProps> = (props) => {
                             <div className='d-flex justify-content-end'>
                                 <Button
                                     type='button'
-                                    onClick={() => onClose()}
+                                    onClick={() => { onClose(); }}
                                     className='me-2 btn btn-secondary'
                                 >{t('modals.remove.cancel')}
                                 </Button>

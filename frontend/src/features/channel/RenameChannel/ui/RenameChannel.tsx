@@ -2,7 +2,7 @@ import React from 'react'
 import { useModalState } from '@/shared/ui/Modal'
 import { Portal } from '@/shared/ui/Portal'
 import { AppLink } from '@/shared/ui/Link'
-import { ChannelType } from '@/entities/Channel'
+import { type ChannelType } from '@/entities/Channel'
 import { RenameChannelModal } from './RenameChannelModal'
 import { useTranslation } from 'react-i18next'
 

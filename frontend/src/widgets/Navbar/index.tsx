@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next'
 import { useAppDispatch } from '@/shared/hooks'
 import { selectCurrentUser, logout } from '@/features/Auth/model/sliceAuth'
 import { useSelector } from 'react-redux'
+import { FC } from 'react'
 
-export const Navbar = () => {
+export const Navbar: FC = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
 

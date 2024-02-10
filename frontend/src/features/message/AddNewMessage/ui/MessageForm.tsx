@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import { type FC, type PropsWithChildren } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Button } from '@/shared/ui/Button'
 import { useSendMessageMutation } from '@/features/message/AddNewMessage'

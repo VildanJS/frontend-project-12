@@ -1,5 +1,5 @@
 import { getSocket, rtkApi } from '@/shared/api/rtkApi'
-import { StateSchema } from '@/app/provider/store'
+import { type StateSchema } from '@/app/provider/store'
 
 
 export const messageApi = rtkApi.injectEndpoints({

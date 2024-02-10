@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import { useModalState } from '@/shared/ui/Modal'
 import { Portal } from '@/shared/ui/Portal'
 import { NewChannelModal } from '@/features/channel/AddNewChannel'

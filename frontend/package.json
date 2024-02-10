@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "lint": "npx eslint \"**/*.{js,ts,tsx}\" ",
+    "lint:fix": "npx eslint \"**/*.{js,ts,tsx}\" --fix",
     "start": "npx webpack serve --env port=3000",
     "build:prod": "npx webpack build --env mode=production",
     "build:dev": "npx webpack build --env mode=development",

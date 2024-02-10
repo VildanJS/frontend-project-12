@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { StateSchema } from './StateSchema'
+import { type StateSchema } from './StateSchema'
 import { authReducer } from '@/features/Auth'
 import { rtkApi } from '@/shared/api/rtkApi'
 import { messageReducer } from '@/entities/Message'

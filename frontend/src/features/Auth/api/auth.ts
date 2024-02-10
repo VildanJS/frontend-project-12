@@ -1,5 +1,5 @@
 import { rtkApi } from '@/shared/api/rtkApi'
-import { LoginInput } from '../ui/LoginForm'
+import { type LoginInput } from '../ui/LoginForm'
 
 
 interface AuthResponse {

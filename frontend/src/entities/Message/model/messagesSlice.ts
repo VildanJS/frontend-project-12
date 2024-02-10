@@ -1,9 +1,9 @@
 import { createEntityAdapter, createSelector, createSlice } from '@reduxjs/toolkit'
-import { StateSchema } from '@/app/provider/store'
+import { type StateSchema } from '@/app/provider/store'
 import { rtkApi } from '@/shared/api/rtkApi'
 import { channelApiRemove } from '@/features/channel/RemoveChannel'
 
-export type MessageType = {
+export interface MessageType {
     body: string,
     channelId: number;
     username: string;

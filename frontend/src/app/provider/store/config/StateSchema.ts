@@ -1,8 +1,8 @@
-import { rtkApi } from '@/shared/api/rtkApi'
+import { type rtkApi } from '@/shared/api/rtkApi'
 import type { AuthSchema } from '@/features/Auth'
 import type { MessageType } from '@/entities/Message'
 import type { ChannelsSchema } from '@/entities/Channel'
-import { EntityState } from '@reduxjs/toolkit'
+import type { EntityState } from '@reduxjs/toolkit'
 
 
 export interface StateSchema {

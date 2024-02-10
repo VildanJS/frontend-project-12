@@ -1,5 +1,5 @@
 import { getSocket, rtkApi } from '@/shared/api/rtkApi'
-import { ChannelType } from '@/entities/Channel'
+import { type ChannelType } from '@/entities/Channel'
 import { setCurrentChannelId } from '@/entities/Channel/model/channelsSlice'
 
 

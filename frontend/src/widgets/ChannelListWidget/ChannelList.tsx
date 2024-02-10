@@ -1,4 +1,4 @@
-import { ChannelType } from '@/entities/Channel'
+import { type ChannelType } from '@/entities/Channel'
 import { ChannelItem } from './ChannelItem'
 
 interface ChannelListProps {

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { io, Socket } from 'socket.io-client'
+import { io, type Socket } from 'socket.io-client'
 import type { MessageType } from '@/entities/Message'
 import type { ChannelType } from '@/entities/Channel'
 

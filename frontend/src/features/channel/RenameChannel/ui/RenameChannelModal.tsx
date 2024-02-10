@@ -1,11 +1,11 @@
 import { Overlay } from '@/shared/ui/Overlay'
-import React, { FC } from 'react'
-import { Modal, ModalProps } from '@/shared/ui/Modal'
+import React, { type FC } from 'react'
+import { Modal, type ModalProps } from '@/shared/ui/Modal'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Button } from '@/shared/ui/Button'
 import { useRenameChannelMutation } from '@/features/channel/RenameChannel/api'
 import { useTranslation } from 'react-i18next'
-import { TFunction } from 'i18next'
+import { type TFunction } from 'i18next'
 import * as Yup from 'yup'
 import { useSelector } from 'react-redux'
 import { getChannelNamesList } from '@/entities/Channel/model/channelsSlice'
@@ -84,7 +84,7 @@ export const RenameChannelModal: FC<RenameChannelModalProps> = (props) => {
                             <ErrorMessage name='name' component='label' />
                             <div className='d-flex justify-content-end'>
                                 <Button
-                                    onClick={() => onClose()}
+                                    onClick={() => { onClose(); }}
                                     type='button'
                                     className='me-2 btn btn-secondary'
                                 >{t('modals.rename.cancel')}
