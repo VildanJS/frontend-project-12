@@ -10,7 +10,6 @@ import { setCredentials } from '@/features/Auth/model/sliceAuth'
 import { useAppDispatch } from '@/shared/hooks'
 
 import { isApiResponse } from '@/shared/utils/isApiError'
-import { Alert } from '@/shared/ui/Alert'
 import React from 'react'
 
 
@@ -32,8 +31,7 @@ const makeSignupSchema = (t: TFunction<'translation', undefined>) => {
 
 export const SignupForm = () => {
 
-    const [signupUser, { error }] =
-        useSignupUserMutation()
+    const [signupUser] = useSignupUserMutation()
 
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
@@ -161,8 +159,6 @@ export const SignupForm = () => {
                                                             </label>
                                                         </div>
                                                     </div>
-
-                                                    <Alert error={error} />
 
 
                                                     <div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
