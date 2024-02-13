@@ -1,4 +1,3 @@
-import { type FC } from 'react'
-import { AppRouter } from '@/app/provider/router'
-export const App: FC = () => <AppRouter/>
+import { type FC, PropsWithChildren } from 'react'
+export const App: FC<PropsWithChildren> = ({children}) => children
 

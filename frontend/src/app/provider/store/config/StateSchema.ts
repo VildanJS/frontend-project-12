@@ -1,13 +1,8 @@
 import { type rtkApi } from '@/shared/api/rtkApi'
-import type { AuthSchema } from '@/features/Auth'
-import type { MessageType } from '@/entities/Message'
-import type { ChannelsSchema } from '@/entities/Channel'
-import type { EntityState } from '@reduxjs/toolkit'
-
+import type { AuthSchema } from '@/entities/User'
 
 export interface StateSchema {
     auth: AuthSchema,
-    messages: EntityState<MessageType, number>,
-    channels: ChannelsSchema,
+    currentChannelId: string,
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 }

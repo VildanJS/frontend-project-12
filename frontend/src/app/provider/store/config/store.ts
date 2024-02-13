@@ -1,16 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { type StateSchema } from './StateSchema'
-import { authReducer } from '@/features/Auth'
+import { authReducer } from '@/entities/User'
 import { rtkApi } from '@/shared/api/rtkApi'
-import { messageReducer } from '@/entities/Message'
-import { channelReducer } from '@/entities/Channel'
+import { currentChannelIdReducer } from '@/entities/Channel'
 
 
 export const createReduxStore = (initialState: StateSchema) => configureStore({
     reducer: {
         auth: authReducer,
-        channels: channelReducer,
-        messages: messageReducer,
+        currentChannelId: currentChannelIdReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
     },
     devTools: __IS_DEV__,

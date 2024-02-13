@@ -3,7 +3,7 @@ interface ApiErrorResponse {
     data: { statusCode: number, error: string; message: string };
 }
 
-export function isApiResponse(error: unknown): error is ApiErrorResponse {
+export function isApiError(error: unknown): error is ApiErrorResponse {
     return (
         typeof error === 'object' &&
         error != null &&

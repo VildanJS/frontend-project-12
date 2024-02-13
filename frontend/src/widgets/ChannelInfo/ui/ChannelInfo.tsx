@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux'
-import { getMessagesCountByChannelId } from '@/entities/Message/model/messagesSlice'
-import { channelsSelector, getCurrentChannelId } from '@/entities/Channel'
-import { type StateSchema } from '@/app/provider/store'
 import { useTranslation } from 'react-i18next'
+import { selectChannelById, selectCurrentChannelId } from '@/entities/Channel'
+import { selectMessagesCountByChannelId } from '@/entities/Message'
 
 export const ChannelInfo = () => {
-    const {t} = useTranslation()
-    const currentChannelId = useSelector(getCurrentChannelId)
-    const messagesCountByChannelId = useSelector(getMessagesCountByChannelId(currentChannelId))
-    const currentChannel = useSelector((state: StateSchema) => channelsSelector.selectById(state, currentChannelId))
+    const { t } = useTranslation()
+    const currentChannelId = useSelector(selectCurrentChannelId)
+    const messagesCountByChannelId = useSelector(state => selectMessagesCountByChannelId(state, currentChannelId))
+
+    const currentChannel = useSelector(state => selectChannelById(state, currentChannelId))
 
     return (
         <div className='bg-light mb-4 p-3 shadow-sm small'>

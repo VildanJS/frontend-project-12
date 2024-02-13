@@ -2,11 +2,10 @@ import React from 'react'
 import type { FC, PropsWithChildren } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectCurrentUser } from '@/features/Auth/model/sliceAuth'
+import { selectCurrentUserName } from '@/entities/User'
 
 export const ProtectedRoute: FC<PropsWithChildren> = (props) => {
-    const user = useSelector(selectCurrentUser)
-    // Check if the user is authenticated
+    const user = useSelector(selectCurrentUserName)
     if (user === null) {
         return <Navigate to='/login' />
     }
