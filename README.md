@@ -1,5 +1,5 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/VildanJS/frontend-project-lvl-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/VildanJS/frontend-project-lvl3/actions)
+[![hexlet-check](https://github.com/VildanJS/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/VildanJS/frontend-project-12/actions/workflows/hexlet-check.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/47d49797c90b6a973dd7/maintainability)](https://codeclimate.com/github/VildanJS/frontend-project-12/maintainability)
 ## Description
 ### JS chat on render.com: [Hexlet Chat](https://chat-js-94mx.onrender.com/)
