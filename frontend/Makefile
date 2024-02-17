@@ -1,5 +1,5 @@
 start:
-	npx webpack serve
+	npm run start:server
 
 install:
 	npm ci
