@@ -2,7 +2,6 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "main": "index.js",
-  "workspaces": ["frontend"],
   "scripts": {
     "start:server": "npx start-server -s ./frontend/dist",
     "start:front": "npm run start --prefix frontend",
