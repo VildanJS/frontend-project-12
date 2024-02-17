@@ -11,6 +11,7 @@ import { isApiError } from '@/shared/utils/isApiError'
 import { Alert } from '@/shared/ui/Alert'
 import { useLoginUserMutation } from '@/entities/User/api/UserApi'
 import { setCredentials } from '@/entities/User'
+import { getRouteMain, getRouteSignupPage } from '@/shared/const'
 
 
 interface LoginFormProps extends PropsWithChildren {
@@ -44,7 +45,7 @@ export const LoginForm: FC<LoginFormProps> = () => {
                         const data = await loginUser(values).unwrap()
                         dispatch(setCredentials(data))
                         setSubmitting(false)
-                        navigate('/')
+                        navigate(getRouteMain())
                     } catch (error) {
                         if (isApiError(error)) {
                             toast.error(t('signupPage.networkError', { code: error.status }))
@@ -113,7 +114,7 @@ export const LoginForm: FC<LoginFormProps> = () => {
                             <div className='text-center'>
                                 <p>
                                     {t('loginPage.noAccountQuestion')}
-                                    <NavLink to={'/signup'}>{t('loginPage.signup')}</NavLink>
+                                    <NavLink to={getRouteSignupPage()}>{t('loginPage.signup')}</NavLink>
                                 </p>
                             </div>
                         </form>

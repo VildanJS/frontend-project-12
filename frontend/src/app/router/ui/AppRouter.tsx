@@ -8,25 +8,26 @@ import { SignupPage } from '@/pages/SignuPage'
 import { MainLayout } from '@/shared/layouts/MainLayout'
 
 import { ProtectedRoute } from './ProtectedRoute'
+import { getRouteLoginPage, getRouteMain, getRouteNotFoundPage, getRouteSignupPage } from '@/shared/const'
 
 export const AppRouter: FC = () => {
     const routesForPublic = [
         {
-            path: '/login',
+            path: getRouteLoginPage(),
             element: <LoginPage />,
         },
         {
-            path: '/signup',
+            path: getRouteSignupPage(),
             element: <SignupPage />,
         },
         {
-            path: '*',
+            path: getRouteNotFoundPage(),
             element: <NotFoundPage />,
         },
     ]
     const protectedMainPage =
         {
-            path: '/',
+            path: getRouteMain(),
             element: <ProtectedRoute><MainPage /></ProtectedRoute>,
         }
 

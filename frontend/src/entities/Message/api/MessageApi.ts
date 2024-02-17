@@ -1,6 +1,6 @@
 import { rtkApi } from '@/shared/api/rtkApi'
 import { createSelector } from '@reduxjs/toolkit'
-import { io } from 'socket.io-client'
+import { socket } from '@/shared/api/socket'
 
 export interface MessageType {
     body: string,
@@ -17,14 +17,12 @@ export const messageApi = rtkApi.enhanceEndpoints({ addTagTypes: ['Message'] }).
                     arg,
                     { cacheDataLoaded, updateCachedData },
                 ) {
-                    const socket = io()
                     socket.on('newMessage', (data) => {
                         updateCachedData((draft) => {
                             draft.push(data)
                         })
                     })
                     await cacheDataLoaded
-                    // socket.off('newMessage')
                 },
                 providesTags: (result = []) => {
                     const messagesWithId = result.map(({ id }) => ({ type: 'Message' as const, id }))

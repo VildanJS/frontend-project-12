@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { FC } from 'react'
 import { useAppDispatch } from '@/shared/hooks'
 import { selectCurrentUserName, logout } from '@/entities/User'
+import { getRouteMain } from '@/shared/const'
 
 export const Navbar: FC = () => {
     const {t} = useTranslation()
@@ -14,7 +15,7 @@ export const Navbar: FC = () => {
     return (
         <nav className='shadow-sm navbar navbar-expand-lg navbar-light bg-white'>
             <div className='container'>
-                <a className='navbar-brand' href='/'>{t('navbar.name')}</a>
+                <a className='navbar-brand' href={getRouteMain()}>{t('navbar.name')}</a>
                 {user && <button onClick={handle} type='button' className='btn btn-primary'>{t('navbar.signOut')}</button>}
             </div>
         </nav>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { getRouteMain } from '@/shared/const'
 
 export const NotFoundPage = () => {
     const {t} = useTranslation()
@@ -13,7 +14,7 @@ export const NotFoundPage = () => {
                 <p className='lead'
                     >{t('notFoundPage.advise')}
                 </p>
-                <a href='/' className='btn btn-primary'
+                <a href={getRouteMain()} className='btn btn-primary'
                     > {t('notFoundPage.action')}
                 </a>
             </div>

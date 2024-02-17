@@ -11,6 +11,7 @@ import { useAppDispatch } from '@/shared/hooks'
 import { isApiError } from '@/shared/utils/isApiError'
 import { useSignupUserMutation } from '@/entities/User/api/UserApi'
 import { setCredentials } from '@/entities/User'
+import { getRouteMain } from '@/shared/const'
 
 
 
@@ -71,7 +72,7 @@ export const SignupForm = () => {
 
                                                     setSubmitting(false)
                                                     dispatch(setCredentials(data))
-                                                    navigate('/')
+                                                    navigate(getRouteMain())
                                                 } catch (error) {
                                                     if (isApiError(error)) {
                                                         if (error.status === 409) {

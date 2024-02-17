@@ -7,7 +7,7 @@
     "start:front": "npm run start --prefix frontend",
     "start": "concurrently \"npm run start:server\" \"npm run start:front\"",
     "build:prod": "npm run build:prod --prefix frontend",
-    "build:dev": "npm run build:dev",
+    "build:dev": "npm run build:dev --prefix frontend",
     "kill": "taskkill /f /im node.exe"
   },
   "author": "",

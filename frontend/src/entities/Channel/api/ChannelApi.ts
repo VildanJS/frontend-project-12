@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { rtkApi } from '@/shared/api/rtkApi'
 import { messageApi } from '@/entities/Message'
-import { io } from 'socket.io-client'
+import { socket } from '@/shared/api/socket'
 
 export interface ChannelType {
     id: string;
@@ -17,15 +17,12 @@ export const channelApi = rtkApi.enhanceEndpoints({ addTagTypes: ['Channel'] }).
                     arg,
                     { cacheDataLoaded, updateCachedData },
                 ) {
-                    const socket = io()
                     socket.on('newChannel', (data) => {
                         updateCachedData((draft) => {
                             draft.push(data)
                         })
                     })
-
                     await cacheDataLoaded
-                    // socket.off('newChannel')
                 },
                 providesTags: (result = []) => {
                     const channelsWithId = result.map(({ id }) => ({ type: 'Channel' as const, id }))

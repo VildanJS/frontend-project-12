@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import { type StateSchema } from '@/app/provider/store'
+import { type StateSchema } from '@/app/store'
 
 export interface AuthSchema {
     username: null | string,

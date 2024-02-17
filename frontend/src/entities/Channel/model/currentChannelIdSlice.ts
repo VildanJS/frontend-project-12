@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import { type StateSchema } from '@/app/provider/store'
+import { type StateSchema } from '@/app/store'
 import { DEFAULT_CHANNEL_ID } from '@/shared/const'
-import { channelApi } from '@/entities/Channel/api/ChannelApi'
+import { channelApi } from '../api/ChannelApi'
 
 export const currentChannelIdSlice = createSlice({
     name: 'currentChannelId',
