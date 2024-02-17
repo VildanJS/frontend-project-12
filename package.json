@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start:server": "npx start-server -s ./frontend/dist",
+    "start:server": "npx start-server -s ./frontend/build",
     "start:front": "npm run start --prefix frontend",
     "start": "concurrently \"npm run start:server\" \"npm run start:front\"",
     "build:prod": "npm run build:prod --prefix frontend",

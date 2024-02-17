@@ -8,11 +8,11 @@ export default (env: EnvOptions): Configuration => {
         mode: env.mode || 'development',
         paths: {
             entry: path.resolve(__dirname, 'src', 'index.tsx'),
-            output: path.resolve(__dirname, 'dist'),
+            output: path.resolve(__dirname, 'build'),
             html: path.resolve(__dirname, 'public', 'index.html'),
             src: path.join(__dirname, 'src'),
             locales: path.join(__dirname, 'public', 'locales'),
-            buildLocales: path.join(__dirname, 'dist', 'locales'),
+            buildLocales: path.join(__dirname, 'build', 'locales'),
         },
         port: env.port || 3000,
         isOpen: true
