@@ -2,11 +2,11 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "main": "index.js",
+  "workspaces": ["frontend"],
   "scripts": {
     "start:server": "npx start-server -s ./frontend/dist",
     "start:front": "npm run start --prefix frontend",
     "start": "concurrently \"npm run start:server\" \"npm run start:front\"",
-    "postinstall": "npm ci && npm ci --prefix frontend",
     "build:prod": "npm run build:prod --prefix frontend",
     "build:dev": "npm run build:dev --prefix frontend",
     "kill": "taskkill /f /im node.exe"
