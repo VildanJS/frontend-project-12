@@ -1,3 +1,4 @@
+/* eslint-disable */
 import filter from 'leo-profanity'
 export const initLeoProfanity = () => {
     filter.list()
