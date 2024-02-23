@@ -4,18 +4,24 @@ import * as Yup from 'yup'
 import { TFunction } from 'i18next/index'
 
 import { toast } from 'react-toastify'
+import filter from 'leo-profanity'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useAppDispatch } from '@/shared/hooks'
-import { getLeoProfanityFilter } from '@/shared/leoProfanity'
 
+import { useAppDispatch } from '@/shared/hooks'
 import { isApiError } from '@/shared/utils/isApiError'
 import { Button } from '@/shared/ui/Button'
 
 import { setCurrentChannelId } from '../../../model/currentChannelIdSlice'
-import { selectAllChannelsNames, useAddNewChannelMutation } from '../../../api/ChannelApi'
+import {
+    selectAllChannelsNames,
+    useAddNewChannelMutation,
+} from '../../../api/ChannelApi'
 
-const validationSchema = (t: TFunction<'translation', undefined>, channelsNames: string[]) => {
+const validationSchema = (
+    t: TFunction<'translation', undefined>,
+    channelsNames: string[],
+) => {
     return Yup.object().shape({
         name: Yup.string()
             .required(t('modals.add.validation.required'))
@@ -29,15 +35,13 @@ interface NewChannelModalProps {
     onClose: () => void
 }
 
-export const NewChannelForm: FC<NewChannelModalProps> = ({onClose}) => {
-    const filter = getLeoProfanityFilter('en')
+export const NewChannelForm: FC<NewChannelModalProps> = ({ onClose }) => {
     const [addNewChannel] = useAddNewChannelMutation()
 
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
 
     const channelNamesList = useSelector(selectAllChannelsNames)
-
 
     const schema = validationSchema(t, channelNamesList)
     return (
@@ -51,7 +55,7 @@ export const NewChannelForm: FC<NewChannelModalProps> = ({onClose}) => {
                     const channel = await addNewChannel({
                         name: filter.clean(values.name),
                     }).unwrap()
-                    dispatch(setCurrentChannelId({id: channel.id }))
+                    dispatch(setCurrentChannelId({ id: channel.id }))
                     toast.success(t('modals.add.addChannelSuccess'))
                     resetForm()
                     onClose()
@@ -62,7 +66,6 @@ export const NewChannelForm: FC<NewChannelModalProps> = ({onClose}) => {
                         console.error(error)
                     }
                 }
-
             }}
         >
             <Form className=''>
@@ -75,10 +78,8 @@ export const NewChannelForm: FC<NewChannelModalProps> = ({onClose}) => {
                         className='mb-2 form-control'
                     />
                     <ErrorMessage name='name' component='label' />
-                    <label
-                        className='visually-hidden'
-                        htmlFor='name'
-                    >{t('modals.add.name')}
+                    <label className='visually-hidden' htmlFor='name'>
+                        {t('modals.add.name')}
                     </label>
                     <div className='d-flex justify-content-end'>
                         <Button
@@ -90,10 +91,7 @@ export const NewChannelForm: FC<NewChannelModalProps> = ({onClose}) => {
                         >
                             {t('modals.add.cancel')}
                         </Button>
-                        <Button
-                            type='submit'
-                            className='btn btn-primary'
-                        >
+                        <Button type='submit' className='btn btn-primary'>
                             {t('modals.add.add')}
                         </Button>
                     </div>

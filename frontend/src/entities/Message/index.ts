@@ -6,5 +6,5 @@ export {
     messageApi,
     useGetMessagesQuery,
     useAddNewMessageMutation,
-    selectMessagesCountByChannelId,
+    selectMessagesCountByChannelIdDeprecated,
 } from './api/MessageApi'

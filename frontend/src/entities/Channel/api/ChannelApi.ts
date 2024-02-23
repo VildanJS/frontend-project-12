@@ -1,15 +1,17 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { rtkApi } from '@/shared/api/rtkApi'
 import { messageApi } from '@/entities/Message'
-import { socket } from '@/shared/api/socket'
+import { getSocketInstance } from '@/shared/api/createSocket'
 
 export interface ChannelType {
-    id: string;
-    name: string;
-    removable: boolean;
+    id: string
+    name: string
+    removable: boolean
 }
 
-export const channelApi = rtkApi.enhanceEndpoints({ addTagTypes: ['Channel'] }).injectEndpoints({
+export const channelApi = rtkApi
+    .enhanceEndpoints({ addTagTypes: ['Channel'] })
+    .injectEndpoints({
         endpoints: (builder) => ({
             getChannels: builder.query<ChannelType[], void>({
                 query: () => '/channels',
@@ -17,6 +19,8 @@ export const channelApi = rtkApi.enhanceEndpoints({ addTagTypes: ['Channel'] }).
                     arg,
                     { cacheDataLoaded, updateCachedData },
                 ) {
+                    const socket = await getSocketInstance()
+
                     socket.on('newChannel', (data) => {
                         updateCachedData((draft) => {
                             draft.push(data)
@@ -25,7 +29,10 @@ export const channelApi = rtkApi.enhanceEndpoints({ addTagTypes: ['Channel'] }).
                     await cacheDataLoaded
                 },
                 providesTags: (result = []) => {
-                    const channelsWithId = result.map(({ id }) => ({ type: 'Channel' as const, id }))
+                    const channelsWithId = result.map(({ id }) => ({
+                        type: 'Channel' as const,
+                        id,
+                    }))
                     return result
                         ? [{ type: 'Channel', id: 'LIST' }, ...channelsWithId]
                         : [{ type: 'Channel', id: 'LIST' }]
@@ -39,13 +46,18 @@ export const channelApi = rtkApi.enhanceEndpoints({ addTagTypes: ['Channel'] }).
                 }),
                 invalidatesTags: [{ type: 'Channel', id: 'LIST' }],
             }),
-            editChannel: builder.mutation<ChannelType, { name: string, id: string }>({
+            editChannel: builder.mutation<
+                ChannelType,
+                { name: string; id: string }
+            >({
                 query: ({ name, id }) => ({
                     url: `/channels/${id}`,
                     method: 'PATCH',
                     body: { name, id },
                 }),
-                invalidatesTags: (result, error, arg) => [{ type: 'Channel', id: arg.id }],
+                invalidatesTags: (result, error, arg) => [
+                    { type: 'Channel', id: arg.id },
+                ],
             }),
             deleteChannel: builder.mutation<ChannelType, { id: string }>({
                 query: ({ id }) => ({
@@ -55,9 +67,15 @@ export const channelApi = rtkApi.enhanceEndpoints({ addTagTypes: ['Channel'] }).
                 }),
                 async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
                     const patchMessagesRes = dispatch(
-                        messageApi.util.updateQueryData('getMessages', undefined, draft => {
-                            return draft.filter(message => message.channelId !== id)
-                        }),
+                        messageApi.util.updateQueryData(
+                            'getMessages',
+                            undefined,
+                            (draft) => {
+                                return draft.filter(
+                                    (message) => message.channelId !== id,
+                                )
+                            },
+                        ),
                     )
                     try {
                         await queryFulfilled
@@ -65,26 +83,28 @@ export const channelApi = rtkApi.enhanceEndpoints({ addTagTypes: ['Channel'] }).
                         patchMessagesRes.undo()
                     }
                 },
-                invalidatesTags: (result, error, arg) => [{ type: 'Channel', id: arg.id }],
+                invalidatesTags: (result, error, arg) => [
+                    { type: 'Channel', id: arg.id },
+                ],
             }),
         }),
-    },
-)
+    })
 
 const selectChannelsResult = channelApi.endpoints.getChannels.select()
 const selectAllChannels = createSelector(
     selectChannelsResult,
-    channelsResult => channelsResult.data ?? [],
+    (channelsResult) => channelsResult.data ?? [],
 )
 export const selectAllChannelsNames = createSelector(
     selectAllChannels,
-    (channels) => channels.map(channel => channel.name),
+    (channels) => channels.map((channel) => channel.name),
 )
 
 export const selectChannelById = createSelector(
     selectAllChannels,
     (channels, channelId) => channelId,
-    (channels, channelId) => channels.find((channel: ChannelType) => channel.id === channelId),
+    (channels, channelId) =>
+        channels.find((channel: ChannelType) => channel.id === channelId),
 )
 
 export const {

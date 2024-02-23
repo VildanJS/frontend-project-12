@@ -1,7 +1,6 @@
 import { rtkApi } from '@/shared/api/rtkApi'
 import { createSelector } from '@reduxjs/toolkit'
-import { socket } from '@/shared/api/socket'
-import { selectCurrentChannelId } from '@/entities/Channel'
+import { getSocketInstance } from '@/shared/api/createSocket'
 
 export interface MessageType {
     body: string
@@ -20,6 +19,7 @@ export const messageApi = rtkApi
                     arg,
                     { cacheDataLoaded, updateCachedData },
                 ) {
+                    const socket = await getSocketInstance()
                     socket.on('newMessage', (data) => {
                         updateCachedData((draft) => {
                             draft.push(data)
@@ -83,7 +83,7 @@ const selectAllMessages = createSelector(
     selectMessagesResult,
     (channelsResult) => channelsResult.data ?? [],
 )
-export const selectMessagesCountByChannelId = createSelector(
+export const selectMessagesCountByChannelIdDeprecated = createSelector(
     selectAllMessages,
     (messages, channelId) => channelId,
     (messages, channelId) => {
@@ -92,9 +92,9 @@ export const selectMessagesCountByChannelId = createSelector(
         ).length
     },
 )
-
+// TODO refactor annoying function in Selector
 export const selectMessagesCountByChannelIdRedesigned = createSelector(
-    selectCurrentChannelId,
+    (state) => state.currentChannelId,
     selectAllMessages,
     (channelId, messages) => {
         return messages.filter(

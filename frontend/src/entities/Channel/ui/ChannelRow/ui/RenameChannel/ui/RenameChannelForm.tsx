@@ -5,30 +5,37 @@ import * as Yup from 'yup'
 import { TFunction } from 'i18next'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { toast } from 'react-toastify'
+import filter from 'leo-profanity'
 import { isApiError } from '@/shared/utils/isApiError'
 import { Button } from '@/shared/ui/Button'
-import { getLeoProfanityFilter } from '@/shared/leoProfanity'
 
-import { selectAllChannelsNames, useEditChannelMutation } from '../../../../../api/ChannelApi'
-
+import {
+    selectAllChannelsNames,
+    useEditChannelMutation,
+} from '../../../../../api/ChannelApi'
 
 interface RenameChannelFormProps {
-    channelId: string,
-    channelName: string,
+    channelId: string
+    channelName: string
     onClose: () => void
 }
-const validationSchema = (t: TFunction<'translation', undefined>, channelsNames: string[]) => {
+const validationSchema = (
+    t: TFunction<'translation', undefined>,
+    channelsNames: string[],
+) => {
     return Yup.object().shape({
         name: Yup.string()
             .required(t('modals.rename.validation.required'))
             .min(3, t('modals.rename.validation.min3'))
             .max(20, t('modals.rename.validation.max20'))
-            .notOneOf(channelsNames, t('modals.rename.validation.notUniqueName')),
+            .notOneOf(
+                channelsNames,
+                t('modals.rename.validation.notUniqueName'),
+            ),
     })
 }
 export const RenameChannelForm: FC<RenameChannelFormProps> = (props) => {
     const { t } = useTranslation()
-    const filter = getLeoProfanityFilter('en')
     const { channelId, channelName, onClose } = props
     const channelNamesList = useSelector(selectAllChannelsNames)
     const schema = validationSchema(t, channelNamesList)
@@ -41,7 +48,10 @@ export const RenameChannelForm: FC<RenameChannelFormProps> = (props) => {
             validationSchema={schema}
             onSubmit={async (values, formikHelpers) => {
                 try {
-                    await editChannel({ name: filter.clean(values.name), id: channelId }).unwrap()
+                    await editChannel({
+                        name: filter.clean(values.name),
+                        id: channelId,
+                    }).unwrap()
                     toast.success(t('modals.rename.renameChannelSuccess'))
                     formikHelpers.resetForm()
                     onClose()
@@ -63,23 +73,22 @@ export const RenameChannelForm: FC<RenameChannelFormProps> = (props) => {
                         type='text'
                         className='mb-2 form-control'
                     />
-                    <label
-                        className='visually-hidden'
-                        htmlFor='nameId'
-                    >{t('modals.rename.name')}
+                    <label className='visually-hidden' htmlFor='nameId'>
+                        {t('modals.rename.name')}
                     </label>
                     <ErrorMessage name='name' component='label' />
                     <div className='d-flex justify-content-end'>
                         <Button
-                            onClick={() => { onClose(); }}
+                            onClick={() => {
+                                onClose()
+                            }}
                             type='button'
                             className='me-2 btn btn-secondary'
-                        >{t('modals.rename.cancel')}
+                        >
+                            {t('modals.rename.cancel')}
                         </Button>
-                        <Button
-                            type='submit'
-                            className='btn btn-primary'
-                        >{t('modals.rename.send')}
+                        <Button type='submit' className='btn btn-primary'>
+                            {t('modals.rename.send')}
                         </Button>
                     </div>
                 </div>
